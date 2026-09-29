@@ -1,0 +1,68 @@
+ASAFAMZ BUDGET - PUT IT ONLINE AND GET AN ANDROID APK
+=====================================================
+Total time: about 20 minutes. Everything here is free.
+
+PART 1 - PUT THE APP ONLINE (GitHub Pages)
+1. On github.com create a new PUBLIC repository, e.g. "budget".
+2. Upload EVERYTHING in this folder, keeping the folders as they are:
+   index.html, manifest.webmanifest, sw.js, .nojekyll, icons/, screenshots/
+   (.nojekyll is hidden on some computers; it must be uploaded. It lets
+   GitHub serve the .well-known folder you add in Part 3.)
+3. Repository > Settings > Pages > Source: "Deploy from a branch",
+   Branch: main, folder: / (root) > Save.
+4. After a minute your app is live at:
+      https://YOUR-USERNAME.github.io/budget/
+   Open that link in Chrome on your phone. It works like the app already.
+   Chrome may offer "Install app"; that alone puts it on your home screen.
+
+PART 2 - TURN IT INTO AN APK (PWABuilder, made by Microsoft)
+1. Go to https://www.pwabuilder.com and paste your link from Part 1.
+2. Click "Package for stores" > Android > "Generate Package".
+   In Options set:
+     Package ID:  com.asafamz.budget
+     App name:    Asafamz Budget      Launcher name: Asafamz
+     Signing key: Create new
+3. Download the zip. Inside you get:
+     - an .apk file  -> install this on your phone
+     - an .aab file  -> this is what you upload to the Google Play Store later
+     - assetlinks.json -> needed in Part 3
+     - signing.keystore + signing-key-info.txt -> BACK THESE UP SAFELY.
+       You need the same key for every future update on the Play Store.
+       If you lose it you cannot update the app.
+
+PART 3 - REMOVE THE BROWSER BAR (recommended)
+Without this step the APK works but shows a small address bar at the top.
+1. In your GitHub repo create a folder named  .well-known
+2. Upload the assetlinks.json from PWABuilder into it, so it opens at:
+      https://YOUR-USERNAME.github.io/.well-known/assetlinks.json
+   IMPORTANT: this must be at the ROOT of your github.io address, which
+   means it has to be in a repo named exactly  YOUR-USERNAME.github.io
+   If your app is in a repo called "budget", create that second repo just
+   for the .well-known folder (with a .nojekyll file), OR host the app
+   itself in the YOUR-USERNAME.github.io repo. A custom domain avoids this.
+
+PART 4 - INSTALL THE APK ON YOUR PHONE
+1. Send the .apk to your phone (WhatsApp to yourself, Google Drive, USB).
+2. Tap it. Android asks to allow "Install unknown apps" for that app
+   (Files, Chrome or WhatsApp). Allow it, go back, tap Install.
+3. Google Play Protect may warn because it didn't come from the Play Store.
+   That's normal for your own test builds; choose "Install anyway".
+
+MOVING YOUR EXISTING DATA
+Each web address keeps its own data. If you have entries in another copy
+of the app (the claude.ai link or a downloaded file), open that copy >
+Settings > Back up data > Copy or Download, then in the new app >
+Settings > Restore from backup. The APK shares data with Chrome for the
+same address, so entries made in Chrome on your github.io link appear
+in the app too.
+
+UPDATING THE APP LATER
+Upload the new index.html to GitHub, and change the VERSION line at the
+top of sw.js (e.g. asafamz-2.1.0 -> asafamz-2.1.1). The installed APK
+picks up the new version the next time it's opened with internet.
+You don't need a new APK unless you change the name, icon or package.
+
+GOOGLE DRIVE BACKUP
+Once the app is online you can switch on Google Drive backup. Follow
+SETUP-GOOGLE-DRIVE-for-seller.txt and use your github.io address (or your
+own domain) as the "Authorized JavaScript origin".
